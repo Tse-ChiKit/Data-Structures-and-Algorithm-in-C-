@@ -2,10 +2,13 @@
 using namespace std;
 
 void perm(char[], int);
+void perm2(char[], int, int);
+void swap(char *, char *); 
 
 int main(){
     char s[] = "ABC";
-    perm(s,0);
+    int a = 0;
+    perm2(s,0,2);
     return 0;
 }
 
@@ -27,7 +30,33 @@ void perm(char s[], int k){
             flag[i] = 0;
 
         }
-
     }
+}
+
+void perm2(char s[], int l, int h){
+
+    int i;
+    if(l == h){
+        printf("%s ", s);
+    }
+    else
+    {
+        for(i = l; i <= h; i++){
+        swap(s+l,s+i);
+        perm2(s, l+1, h);
+        swap(s+l,s+i);
+    }
+    }
+    
+
 
 }
+
+void swap(char *x, char *y) 
+{ 
+    char temp; 
+    temp = *x; 
+    *x = *y; 
+    *y = temp; 
+} 
+
