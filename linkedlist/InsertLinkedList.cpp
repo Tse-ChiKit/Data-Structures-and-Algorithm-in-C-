@@ -6,36 +6,37 @@ struct Node
     int data;
     struct Node *next;
     
-}* first = NULL;
+}* first = NULL, *last = NULL;
 
 void create(int[], int);
-void display(struct Node *);
+void display(struct Node*);
+void insert(int);
 void insert(int, int);
 
 int main(){
     int arr[] = {1,2,3,4,5};
     create(arr,5);
     display(first);
-    
-    // struct Node *newNode = (struct Node*)malloc(sizeof(Node));
-    // newNode->data = 20;
-    // newNode->next = NULL;
 
     insert(20, 2);
     display(first);
+
+    insert(100);
+    display(first);
+
     return 0;
 }
 
 void create(int A[], int n){
     int i;
-    struct Node *t, *last;
-    first = (struct Node *)malloc(sizeof(Node));
+    struct Node *t;
+    first = (struct Node*)malloc(sizeof(Node));
     first->data = A[0];
     first->next = NULL;
     last = first;
 
     for(i=1; i<n; i++){
-        t=(struct Node *)malloc(sizeof(Node));
+        t=(struct Node*)malloc(sizeof(Node));
         t->data = A[i];
         t->next = NULL;
         last->next =t;
@@ -52,12 +53,33 @@ void display(struct Node *p){
 
 }
 
+
+void insert(int value){
+
+    struct Node *newNode = (struct Node*)malloc(sizeof(Node));
+    newNode->data = value;
+    newNode->next = NULL;
+
+    if(first == NULL){
+        first = newNode;
+        last = newNode;
+    }
+    else
+    {
+        last->next = newNode;
+        last = newNode;
+    }
+    
+
+}
+
 void insert(int value, int index){
 
     struct Node *newNode = (struct Node*)malloc(sizeof(Node));
     newNode->data = value;
     newNode->next = NULL;
     
+
     if(index == 0){
         newNode->next = first;
         first = newNode;
@@ -75,4 +97,8 @@ void insert(int value, int index){
     }
     
 }
+
+
+
+
 
