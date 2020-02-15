@@ -10,18 +10,18 @@ struct Node
 
 void create(int[], int);
 void display(struct Node *);
-void insert(struct Node *, int);
+void insert(int, int);
 
 int main(){
     int arr[] = {1,2,3,4,5};
     create(arr,5);
     display(first);
     
-    struct Node *newNode = (struct Node*)malloc(sizeof(Node));
-    newNode->data = 20;
-    newNode->next = NULL;
+    // struct Node *newNode = (struct Node*)malloc(sizeof(Node));
+    // newNode->data = 20;
+    // newNode->next = NULL;
 
-    insert(newNode, 2);
+    insert(20, 2);
     display(first);
     return 0;
 }
@@ -52,11 +52,15 @@ void display(struct Node *p){
 
 }
 
-void insert(struct Node *p, int index){
+void insert(int value, int index){
+
+    struct Node *newNode = (struct Node*)malloc(sizeof(Node));
+    newNode->data = value;
+    newNode->next = NULL;
+    
     if(index == 0){
-        p->next = first;
-        first = p;
-        printf("%s","called");
+        newNode->next = first;
+        first = newNode;
     }
     else
     {   
@@ -66,8 +70,8 @@ void insert(struct Node *p, int index){
         }
 
 
-        p->next = t->next;
-        t->next = p;
+        newNode->next = t->next;
+        t->next = newNode;
     }
     
 }
