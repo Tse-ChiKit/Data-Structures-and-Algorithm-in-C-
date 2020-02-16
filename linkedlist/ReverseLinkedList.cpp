@@ -11,6 +11,7 @@ struct Node
 void create(int[], int);
 void display(struct Node*);
 void reverse();
+void Rreverse(struct Node*, struct Node*);
 
 
 int main(){
@@ -18,9 +19,10 @@ int main(){
     create(arr,3);
     display(first);
 
-    reverse();
+
+    Rreverse(NULL,first);
     display(first);
- 
+  
     return 0;
 }
 
@@ -66,6 +68,17 @@ void reverse(){
     }
 
     first = q;
+}
+
+void Rreverse(struct Node *q, struct Node *p){
+
+    if(p != NULL){
+        Rreverse(p, p->next);
+        p->next = q;
+    }
+
+    first = q;
+
 }
 
 
